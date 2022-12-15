@@ -19,6 +19,7 @@ from pinterest import views as pinterestViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', pinterestViews.home),
-    path('about/', pinterestViews.about),
+    path('', pinterestViews.home, name='home'),
+    path('about/', pinterestViews.about, name='about'),
+    path('signup/', pinterestViews.signup, name='signup'),
 ]
