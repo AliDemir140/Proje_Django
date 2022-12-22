@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Pinterest
 
 def home(request):
  searchTerm = request.GET.get('searchPinterest')
