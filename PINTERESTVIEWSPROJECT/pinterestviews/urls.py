@@ -18,6 +18,7 @@ from django.urls import path
 from pinterest import views as pinterestViews
 from django.conf.urls.static import static
 from django.conf import settings
+from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
