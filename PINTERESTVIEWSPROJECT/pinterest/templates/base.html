@@ -15,17 +15,20 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg
- navbar-light bg-light mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <div class="container">
-            <a class="navbar-brand" href="#">Pinterests</a>
+            <a class="navbar-brand" href="{% url 'home'%}">
+                {% load static %}
+                <img src="{% static 'img/logo.png' %}" alt="" width="30" height="24"
+                    class="d-inline-block align-text-top" /> Pinterest </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="news.html">News</a>
+                    <a class="nav-link" href="{% url 'news' %}">
+                        News</a>
                     <a class="nav-link" href="#">Login</a>
                     <a class="nav-link" href="#">Sign Up</a>
                 </div>
@@ -37,6 +40,18 @@
         {% block content %}
         {% endblock content %}
     </div>
+    <footer class="text-center text-lg-start bg-light 
+ text-muted mt-4">
+        <div class="text-center p-4">
+            © Copyright -
+            <a class="text-reset fw-bold text-decoration-none" target="_blank" href="https://twitter.com/greglim81">
+                Greg Lim
+            </a> -
+            <a class="text-reset fw-bold text-decoration-none" target="_blank" href="https://twitter.com/danielgarax">
+                Daniel Correa
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>
