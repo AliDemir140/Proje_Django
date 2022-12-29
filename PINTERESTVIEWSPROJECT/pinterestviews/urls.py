@@ -26,7 +26,7 @@ urlpatterns = [
     path('', pinterestViews.home, name='home'),
     path('about/', pinterestViews.about, name='about'),
     path('signup/', pinterestViews.signup, name='signup'),
-    path('news/', include('news.urls')),
+    path('news/', include('/news.urls')),
      
 ]
 
