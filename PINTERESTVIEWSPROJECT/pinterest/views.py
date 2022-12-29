@@ -14,4 +14,9 @@ def signup(request):
  email = request.GET.get('email')
  return render(request, 'signup.html', {'email':email})
 
+def news(request):
+ searchTerm = request.GET.get('searchPinterest')
+ return render(request, 'news.html', 
+ {'searchTerm':searchTerm})
+
 # Create your views here.
