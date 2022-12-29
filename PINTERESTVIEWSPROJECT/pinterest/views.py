@@ -4,11 +4,11 @@ from .models import Pinterest
 
 
 def home(request):
-    searchTerm = request.GET.get('searchPinterest')
-    pinterests = Pinterest.objects.all()
-    return render(request, 'home.html',
-    {'searchTerm': searchTerm, 'pinterests': pinterests})
-
+ searchTerm = request.GET.get('searchPinterest')
+ if searchTerm: pinterests =Pinterest.objects.filter(title__icontains=searchTerm)
+ else: pinterests = Pinterest.objects.all()
+ return render(request, 'home.html',
+ {'searchTerm':searchTerm, 'pinterests': pinterests})
 
 def about(request):
     return render(request, 'about.html')
@@ -20,8 +20,6 @@ def signup(request):
 
 
 def news(request):
-    searchTerm = request.GET.get('searchPinterest')
-    return render(request, 'news.html',
-                  {'searchTerm': searchTerm})
+ return render(request, 'news.html')
 
 # Create your views here.

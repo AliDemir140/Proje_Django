@@ -10,34 +10,24 @@
         Search
     </button>
 </form>
-<p>Searching for: {{ searchTerm }}</p>
-{% for pinterest in pinterests %}
-<h2>{{ pinterest.title }}</h2>
-<h3>{{ pinterest.description }}</h3>
-<img src="{{ pinterest.image.url }}">
-{% if pinterest.url %}
-<a href="{{ pinterest.url }}">Pinterest Link</a>
-{% endif %}
-{% endfor %}
-<p>Searching for: {{ searchTerm }}</p>
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for pinterest in pinterests %}
     <div v-for="pinterest in pinterests" class="col">
         <div class="card">
             <img class="card-img-top" src="{{ pinterest.image.url }}" />
             <div class="card-body">
-                <h5 class="card-title fw-bold">{{
-                    pinterest.title }}</h5>
-                <p class="card-text">{{ pinterest.description
-                    }}</p>
+                <h5 class="card-title fw-bold">{{ pinterest.title }}</h5>
+                <p class="card-text">{{ pinterest.description }}</p>
                 {% if pinterest.url %}
-                <a href="{{ pinterest.url }}" class="btn btn-primary">
-                    Pinterest Link
-                </a>
+                <a href="{{ pinterest.url }}" class="btn btn-primary"> Pinterest Link</a>
                 {% endif %}
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+<br>
+<br>
+
+
 {% endblock content %}

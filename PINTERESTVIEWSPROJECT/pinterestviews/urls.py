@@ -19,13 +19,14 @@ from pinterest import views as pinterestViews
 from django.conf.urls.static import static
 from django.conf import settings
 from django.http import HttpResponse
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', pinterestViews.home, name='home'),
     path('about/', pinterestViews.about, name='about'),
     path('signup/', pinterestViews.signup, name='signup'),
-     path('news', pinterestViews.news, name='news'),
+    path('news/', include('news.urls')),
      
 ]
 
