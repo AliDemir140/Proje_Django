@@ -21,14 +21,14 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', pinterestViews.home, name='home'),
     path('about/', pinterestViews.about, name='about'),
     path('signup/', pinterestViews.signup, name='signup'),
     path('news/', include('news.urls')),
-     
 ]
 
-urlpatterns += static(settings.MEDIA_URL, 
- document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)
