@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ pinterest.image.url }}" class="img-fluid rounded-start" alt="">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ pinterest.title }}</h5>
+                <p class="card-text">{{ pinterest.description}}</p>
+                <p class="card-text">
+                    {% if pinterest.url %}
+                    <a href="{{ pinterest.url }}" class="btn btn-primary">
+                        Pinterest Link
+                    </a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

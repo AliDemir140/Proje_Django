@@ -13,10 +13,12 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for pinterest in pinterests %}
     <div v-for="pinterest in pinterests" class="col">
-        <div class="card">
+        <div class="card" >
             <img class="card-img-top" src="{{ pinterest.image.url }}" />
             <div class="card-body">
+                <a href="{% url 'detail' pinterest.id %}">
                 <h5 class="card-title fw-bold">{{ pinterest.title }}</h5>
+                </a>
                 <p class="card-text">{{ pinterest.description }}</p>
                 {% if pinterest.url %}
                 <a href="{{ pinterest.url }}" class="btn btn-primary"> Pinterest Link</a>

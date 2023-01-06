@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/', pinterestViews.about, name='about'),
     path('signup/', pinterestViews.signup, name='signup'),
     path('news/', include('news.urls')),
+    path('pinterest/', include('pinterest.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
