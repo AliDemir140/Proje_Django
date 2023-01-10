@@ -60,7 +60,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         
-        'DIRS': [os.path.join(BASE_DIR, 'pinterest/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'pinterestviews/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATICFILES_DIRS = [
- BASE_DIR / 'static',
+    BASE_DIR / 'pinterestviews/static/',
 ]
 
 # Internationalization

@@ -11,7 +11,7 @@ def home(request):
         pinterests = Pinterest.objects.filter(title__icontains=searchTerm)
     else:
         pinterests = Pinterest.objects.all()
-        return render(request, 'home.html', {'searchTerm': searchTerm, 'pinterests': pinterests})
+    return render(request, 'home.html', {'searchTerm': searchTerm, 'pinterests': pinterests})
 
 
 def about(request):
@@ -34,11 +34,11 @@ def detail(request, pinterest_id):
                   )
 
 @login_required
-def createreview(request, pinterest_id):
-
-    pinterest = get_object_or_404(Pinterest, pk=pinterest_id)
+def createreview(request, pinterest_id):   
+    pinterest = get_object_or_404(Pinterest,pk=pinterest_id) 
     if request.method == 'GET':
-        return render(request, 'createreview.html', {'form': ReviewForm(), 'pinterest': pinterest})
+        return render(request, 'createreview.html', 
+                      {'form':ReviewForm(), 'pinterest': pinterest})
     else:
         try:
             form = ReviewForm(request.POST)
@@ -46,24 +46,26 @@ def createreview(request, pinterest_id):
             newReview.user = request.user
             newReview.pinterest = pinterest
             newReview.save()
-            return redirect('detail', newReview.pinterest.id)
+            return redirect('detail', newReview.movie.id)
         except ValueError:
-            return render(request, 'createreview.html', {'form': ReviewForm(), 'error': 'bad data passed in'})
+            return render(request, 'createreview.html', 
+              {'form':ReviewForm(),'error':'bad data passed in'})
 
 @login_required
 def updatereview(request, review_id):
-    review = get_object_or_404(Review, pk=review_id, user=request.user)
-
+    review = get_object_or_404(Review,pk=review_id,user=request.user)
     if request.method == 'GET':
         form = ReviewForm(instance=review)
-        return render(request, 'updatereview.html', {'review': review, 'form': form})
+        return render(request, 'updatereview.html', 
+                      {'review': review,'form':form})
     else:
         try:
             form = ReviewForm(request.POST, instance=review)
             form.save()
             return redirect('detail', review.pinterest.id)
         except ValueError:
-            return render(request, 'updatereview.html', {'review': review, 'form': form, 'error': 'Bad data in form'})
+            return render(request, 'updatereview.html',
+             {'review': review,'form':form,'error':'Bad data in form'})
 
 @login_required
 def deletereview(request, review_id):
