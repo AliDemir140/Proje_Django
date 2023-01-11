@@ -1,49 +1,85 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="card mb-3">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="{{ pinterest.image.url }}" class="img-fluid rounded-start" alt="">
+
+<section class="bg-gray200 pt-5 pb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <article class="card">
+                    <img class="card-img-top mb-2" src="{{ pinterest.image.url }}" alt="Card image">
+                    <div class="card-body">
+                        <h1 class="card-title display-4">
+                            {{ pinterest.title }} </h1>
+                        <ul>
+                            <li>{{ pinterest.description}}</li>
+                        </ul>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {% if pinterest.url %}
+                                    <a href="{{ pinterest.url }}" class="btn btn-primary">
+                                        Pinterest Link
+                                    </a>
+                                    {% endif %}
+                                    {% if user.is_authenticated %}
+                                    <a href="{% url 'createreview' pinterest.id %}" class="btn btn-primary">
+                                        Add Review
+                                    </a>
+                                    {% endif %}
+                                </p>
+                                <hr />
+                                <h3>Reviews</h3>
+                                <ul class="list-group">
+                                    {% for review in reviews %}
+                                    <li class="list-group-item pb-3 pt-3">
+                                        <h5 class="card-title">
+                                            Review by {{ review.user.username }}
+                                        </h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            {{ review.date }}
+                                        </h6>
+                                        <p class="card-text">{{ review.text }}</p>
+                                        {% if user.is_authenticated and user == review.user %}
+                                        <a class="btn btn-primary me-2" href=" {% url 'updatereview' review.id %} ">
+                                            Update</a>
+                                        <a class="btn btn-danger" href="{% url 'deletereview' review.id %}">
+                                            Delete</a>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">{{ pinterest.title }}</h5>
-                <p class="card-text">{{ pinterest.description}}</p>
-                <p class="card-text">
-                    {% if pinterest.url %}
-                    <a href="{{ pinterest.url }}" class="btn btn-primary">
-                        Pinterest Link
-                    </a>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'createreview' pinterest.id %}" class="btn btn-primary">
-                        Add Review
-                    </a>
-                    {% endif %}
-                </p>
-                <hr />
-                <h3>Reviews</h3>
-                <ul class="list-group">
-                    {% for review in reviews %}
-                    <li class="list-group-item pb-3 pt-3">
-                        <h5 class="card-title">
-                            Review by {{ review.user.username }}
-                        </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            {{ review.date }}
-                        </h6>
-                        <p class="card-text">{{ review.text }}</p>
-                        {% if user.is_authenticated and user == review.user %}
-                        <a class="btn btn-primary me-2" href=" {% url 'updatereview' review.id %} ">
-                            Update</a>
-                        <a class="btn btn-danger" href="{% url 'deletereview' review.id %}">
-                            Delete</a>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ul>
+
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <h5 class="font-weight-bold">More like this</h5>
+                <div class="card-columns">
+
+                    {% for pinterest in pinterests %}
+                    <div v-for="pinterest in pinterests">
+                        <div class="card card-pin">
+                            <img class="card-img" src="{{ pinterest.image.url }}" alt="Card image">
+                            <div class="overlay">
+                                <h2 class="card-title title">{{ pinterest.title }}</h2>
+                                <div class="more">
+                                    <p class="card-text">{{ pinterest.description }}</p>
+                                    {% if pinterest.url %}
+                                    <a href="{{ pinterest.url }}">
+                                        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock content %}

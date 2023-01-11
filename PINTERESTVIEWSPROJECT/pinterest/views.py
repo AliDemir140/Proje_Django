@@ -26,6 +26,12 @@ def signup(request):
 def news(request):
     return render(request, 'news.html')
 
+def post(request):
+    return render(request, 'post.html')
+
+def author(request):
+    return render(request, 'author.html')
+
 
 def detail(request, pinterest_id):
     pinterest = get_object_or_404(Pinterest, pk=pinterest_id)
@@ -46,7 +52,7 @@ def createreview(request, pinterest_id):
             newReview.user = request.user
             newReview.pinterest = pinterest
             newReview.save()
-            return redirect('detail', newReview.movie.id)
+            return redirect('detail', newReview.pinterest.id)
         except ValueError:
             return render(request, 'createreview.html', 
               {'form':ReviewForm(),'error':'bad data passed in'})

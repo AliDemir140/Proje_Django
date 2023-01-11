@@ -30,6 +30,8 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('pinterest/', include('pinterest.urls')),
     path('accounts/', include('accounts.urls')),
+    path('post/', pinterestViews.post, name='post'),
+    path('author/', pinterestViews.author, name='author'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
